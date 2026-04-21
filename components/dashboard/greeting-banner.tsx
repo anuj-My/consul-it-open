@@ -7,8 +7,8 @@ export function GreetingBanner() {
         Good morning, Alex! <span className="inline-block animate-wave">👋</span>
       </h1>
 
-      <div className="relative overflow-hidden bg-gradient-to-r from-teal-50 to-emerald-50/30 rounded-xl flex items-center">
-        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-teal-500" />
+      <div className="relative overflow-hidden bg-gradient-to-r from-teal-50 to-emerald-50/30 rounded-lg flex items-center">
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal-500" />
         <div className="px-8 py-5">
           <p className="text-gray-700 text-base font-medium">
             &quot;The future belongs to those who believe in the beauty of their dreams.&quot;

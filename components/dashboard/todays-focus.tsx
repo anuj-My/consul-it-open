@@ -18,11 +18,10 @@ const TASKS = [
 export function TodaysFocus() {
   return (
     <div className="flex gap-5 items-stretch">
-      {/* Left: Focus tasks */}
-      <div className="flex-1 bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+      <div className="flex-1 bg-white rounded-lg border p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Target className="w-5 h-5 text-orange-500" />
-          <h2 className="font-bold text-gray-900">Today&apos;s Focus</h2>
+          <Target className="w-5 h-5 text-pink-500" />
+          <h2 className="font-semibold text-gray-900">Today's Focus!</h2>
         </div>
 
         <h3 className="font-semibold text-gray-900 mb-3">
@@ -42,9 +41,7 @@ export function TodaysFocus() {
         </div>
       </div>
 
-      {/* Right: Mood card */}
-      <div className="w-[220px] shrink-0 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 rounded-2xl border border-green-100/50 p-5 flex flex-col items-center justify-center text-center shadow-sm">
-        {/* Calm meditation illustration */}
+      <div className="w-[320px] shrink-0 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 rounded-lg border p-5 flex flex-col items-center justify-center text-center">
         <div className="w-20 h-20 mb-3 relative">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-200/60 to-teal-200/60 animate-pulse" />
           <div className="absolute inset-2 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
