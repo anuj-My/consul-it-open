@@ -4,7 +4,7 @@ import { JourneyProgress } from "@/components/sessions/journey-progress";
 import { SpecialRecommendation } from "@/components/sessions/special-recommendation";
 import { QuickResources } from "@/components/sessions/quick-resources";
 
-export default function SessionsPage() {
+export default function CareerRoadmapPage() {
   return (
     <div className="p-6 lg:p-8 max-w-[1400px]">
       {/* Page Header */}
