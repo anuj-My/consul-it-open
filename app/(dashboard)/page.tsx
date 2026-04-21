@@ -10,7 +10,7 @@ import { SkillsProgress } from "@/components/dashboard/skills-progress";
 
 export default function Home() {
   return (
-    <div className="p-6 lg:p-8 space-y-6 max-w-[1400px]">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-[1400px]">
       <GreetingBanner />
 
       <AIWidget />
@@ -19,15 +19,20 @@ export default function Home() {
 
       <CareerRoadmap />
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6">
         <div className="space-y-6">
           <BuildBasics />
           <MindGym />
         </div>
 
         <div className="space-y-6">
+
+           <div className="bg-white rounded-lg space-y-6 border p-6">
           <MoodTrends />
+          <div className="border-b border-gray-100 mb-8"></div>
           <Recommendation />
+
+           </div>
           <SkillsProgress />
         </div>
       </div>

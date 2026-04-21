@@ -20,11 +20,11 @@ export function AIWidget() {
         <h2 className="font-semibold text-lg text-gray-900">ConsulTOpen AI</h2>
       </div>
 
-      <div className="flex gap-3 mb-4 overflow-x-auto pb-1 justify-end">
+      <div className="flex flex-wrap gap-3 mb-4 overflow-x-auto pb-1 justify-end scrollbar-hide">
         {QUICK_PROMPTS.map((prompt, i) => (
           <button
             key={i}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-gray-200 bg-gray-50/50 text-xs text-gray-600 hover:bg-gray-100 hover:border-gray-300 transition-all whitespace-nowrap min-w-fit group"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-gray-200 bg-gray-50/50 text-xs text-gray-600 hover:bg-gray-100 hover:border-gray-300 transition-all group"
           >
             <span className="line-clamp-1">{prompt}</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-600 transition-colors shrink-0" />
@@ -32,7 +32,6 @@ export function AIWidget() {
         ))}
       </div>
 
-      {/* Input */}
       <div className="relative">
         <Textarea
           placeholder="Type your specific question here..."

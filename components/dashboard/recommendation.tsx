@@ -1,41 +1,46 @@
 "use client";
 
-import { Sparkles, Star, ArrowRight } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export function Recommendation() { 
   return (
-    <div className="bg-white rounded-lg border p-6">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-amber-500" />
-          <span className="text-xs text-gray-400 font-medium">Based on mood analysis</span>
-        </div>
+    <div className="flex flex-col items-center">
+      <div className="bg-[#FDF2F8] px-4 py-1 rounded-full mb-4">
+        <span className="text-[10px] sm:text-xs text-[#ED4694] font-medium whitespace-nowrap">
+          Based on mood log
+        </span>
       </div>
 
-      <h2 className="font-bold text-amber-600 text-center mb-4">
+      <h2 className="text-lg sm:text-lg font-semibold text-[#ED4694] mb-6">
         Recommended for You
       </h2>
 
-      {/* Consultant card */}
-      <div className="flex flex-col items-center text-center">
-        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 overflow-hidden mb-3 ring-2 ring-amber-200/50 ring-offset-2">
-          <img
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mukund&backgroundColor=fde68a"
-            alt="Mukund Tyagi"
-            className="w-full h-full object-cover"
+      <div className="flex flex-col items-center text-center w-full">
+        <div className="w-20 h-20 rounded-full overflow-hidden mb-4 ring-1 ring-gray-100 shadow-sm">
+          <Image
+            src="/images/Counselor Emma.png"
+            alt="Emma Watson"
+            width={80}
+            height={80}
+            className="object-cover"
           />
         </div>
-        <h3 className="font-bold text-gray-900 text-sm">Mukund Tyagi</h3>
-        <p className="text-xs text-gray-500 mb-2">Student Wellbeing Therapist</p>
-        <div className="flex items-center gap-1 mb-4">
+
+        <h3 className="font-semibold text-gray-900 text-lg mb-0.5">Emma Watson</h3>
+        <p className="text-xs text-gray-500 font-medium mb-3">
+          (Student Wellbeing Therapist)
+        </p>
+
+        <div className="flex items-center gap-1.5 mb-8">
           <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-          <span className="text-sm font-bold text-amber-600">4.2</span>
-          <span className="text-xs text-gray-400">(120+ Sessions)</span>
+          <span className="text-sm font-bold text-amber-500">4.9</span>
+          <span className="text-sm text-gray-400 font-medium">(120+ Sessions)</span>
         </div>
 
-        <button className="w-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-sm font-bold py-3 rounded-lg hover:from-teal-600 hover:to-emerald-600 transition-all flex items-center justify-center gap-2 group">
+        <button className="w-full bg-[#ED4694] hover:bg-[#D43D82] text-white text-sm font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
           Book a Therapy Session
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight className="w-4 h-4" />
         </button>
       </div>
     </div>

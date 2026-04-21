@@ -14,6 +14,7 @@ import {
   Settings,
   LogOut,
   MoreVertical,
+  X,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -33,14 +34,29 @@ const BOTTOM_LINKS = [
   { name: "Logout", href: "/logout", icon: LogOut },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export function Sidebar({ onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col pt-6 pb-4">
-      <div className="px-6 mb-8 flex items-center gap-2 border-b border-gray-100 pb-6">
+    <div className="w-64 h-full bg-white border-r border-gray-100 flex flex-col pt-6 pb-4 shadow-xl lg:shadow-none">
+      <div className="px-6 mb-8 flex items-center justify-between border-b border-gray-100 pb-6 shrink-0">
+        <div className="flex items-center gap-2">
            <Image src="/images/logo.svg" alt="consult-it-open" width={32} height={32} />
-        <span className="font-bold text-xl text-gray-900 tracking-tight">ConsulTOpen</span>
+          <span className="font-bold text-xl text-gray-900 tracking-tight">ConsulTOpen</span>
+        </div>
+
+        {onClose && (
+          <button 
+            onClick={onClose}
+            className="p-1 rounded-md text-gray-400 hover:text-gray-500 lg:hidden transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        )}
       </div>
 
       <nav className="flex-1 px-4 space-y-1 overflow-y-auto">

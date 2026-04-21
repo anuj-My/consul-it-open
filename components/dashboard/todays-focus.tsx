@@ -14,7 +14,7 @@ const TASKS = [
 
 export function TodaysFocus() {
   return (
-    <div className="flex gap-5 items-stretch">
+    <div className="flex flex-col lg:flex-row gap-5 items-stretch">
       <div className="flex-1 bg-white rounded-lg border p-6">
         <div className="flex items-center gap-2 mb-4">
           <Target className="w-5 h-5 text-pink-500" />
@@ -51,7 +51,7 @@ export function TodaysFocus() {
 
       </div>
 
-      <div className="relative w-[320px] shrink-0 bg-gradient-to-br from-[#F4FBEB] to-[#F9FEF2] rounded-lg border p-8 flex flex-col items-center justify-center text-center overflow-hidden">
+      <div className="relative w-full lg:w-[320px] shrink-0 bg-gradient-to-br from-[#F4FBEB] to-[#F9FEF2] rounded-lg border p-8 flex flex-col items-center justify-center text-center overflow-hidden">
         <Image 
           src="/images/Subtract.png" 
           alt="" 

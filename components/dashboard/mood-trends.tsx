@@ -3,7 +3,15 @@
 import { Activity, AlertTriangle } from "lucide-react";
 import Image from "next/image";
 
-const MOOD_HISTORY = [
+interface MoodHistoryItem {
+  day: string;
+  height: string;
+  color?: string;
+  icon?: string;
+  isPlaceholder?: boolean;
+}
+
+const MOOD_HISTORY: MoodHistoryItem[] = [
   { day: "Mon", height: "120px", color: "bg-gradient-to-t from-[#9760CE] to-[#C7A3E5]", icon: "/images/Layer 1.svg" },
   { day: "Tue", height: "120px", color: "bg-gradient-to-t from-[#70AD40] to-[#9CD072]", icon: "/images/calm 1.svg" },
   { day: "Wed", height: "120px", color: "bg-gradient-to-t from-[#D82675] to-[#F18EB8]", icon: "/images/Group 427319065.svg" },
@@ -15,7 +23,7 @@ const MOOD_HISTORY = [
 
 export function MoodTrends() {
   return (
-    <div className="bg-white rounded-lg border p-6">
+    <div>
       <div>
 
       <div className="flex items-center justify-between mb-1">
@@ -40,7 +48,7 @@ export function MoodTrends() {
       <div className="flex items-end justify-between px-2 mb-4 mt-5">
         {MOOD_HISTORY.map((item, index) => (
           <div key={index} className="flex flex-col items-center justify-end h-full w-8">
-            {!item.isPlaceholder && (
+            {item.icon && (
               <div className="relative w-6 h-6 z-10 shrink-0 mb-1">
                 <Image
                   src={item.icon}

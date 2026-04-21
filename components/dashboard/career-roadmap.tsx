@@ -22,11 +22,11 @@ export function CareerRoadmap() {
         </button>
       </div>
 
-      <div className="relative mb-8 px-4">
-        <div className="absolute top-[18px] left-[5%] right-[5%] h-0.5 bg-gray-100" />
-        <div className="absolute top-[18px] left-[5%] w-[15%] h-0.5 bg-teal-500" />
+      <div className="relative mb-8 px-4 overflow-x-auto pb-4 scrollbar-hide">
+        <div className="absolute top-[18px] left-0 right-0 h-0.5 bg-gray-100 min-w-[500px]" />
+        <div className="absolute top-[18px] left-0 w-[15%] h-0.5 bg-teal-500 min-w-[500px]" />
 
-        <div className="flex justify-between items-start relative z-10">
+        <div className="flex justify-between items-start relative z-10 min-w-[500px]">
           {MILESTONES.map((m) => {
             const isCompleted = m.status === "completed";
             return (

@@ -73,36 +73,38 @@ export function BuildBasics() {
                   : "bg-white border-gray-200"
               }`}
             >
-              <div className={`flex items-center gap-4 w-full ${isLocked ? "blur-[2.5px] opacity-40 select-none pointer-events-none" : ""}`}>
-                <div className="shrink-0">
-                  {isCompleted ? (
-                    <div className="w-6 h-6 rounded bg-teal-400 flex items-center justify-center">
-                      <CheckSquare className="w-5 h-5 text-white" />
-                    </div>
-                  ) : (
-                    <Square className="w-6 h-6 text-gray-400" />
-                  )}
-                </div>
+              <div className={`flex flex-col sm:flex-row sm:items-center gap-4 w-full ${isLocked ? "blur-[2.5px] opacity-40 select-none pointer-events-none" : ""}`}>
+                <div className="flex items-center gap-4 flex-1">
+                  <div className="shrink-0">
+                    {isCompleted ? (
+                      <div className="w-6 h-6 rounded bg-teal-400 flex items-center justify-center">
+                        <CheckSquare className="w-5 h-5 text-white" />
+                      </div>
+                    ) : (
+                      <Square className="w-6 h-6 text-gray-400" />
+                    )}
+                  </div>
 
-                <div className="flex-1">
-                  <h3 className={`font-bold text-sm tracking-tight ${isCompleted ? "text-gray-400 font-medium line-through" : "text-gray-800"}`}>
-                    {task.title}
-                  </h3>
-                  <Badge className={`${SUBJECT_COLORS[task.subject]} text-[11px] font-bold mt-1 px-3 py-0.5 rounded-full`}>
-                    {task.subject}
-                  </Badge>
+                  <div className="flex-1 min-w-0">
+                    <h3 className={`font-bold text-sm tracking-tight truncate ${isCompleted ? "text-gray-400 font-medium line-through" : "text-gray-800"}`}>
+                      {task.title}
+                    </h3>
+                    <Badge className={`${SUBJECT_COLORS[task.subject]} text-[11px] font-bold mt-1 px-3 py-0.5 rounded-full`}>
+                      {task.subject}
+                    </Badge>
+                  </div>
                 </div>
 
                 {!isLocked && (
-                  <div className="shrink-0">
+                  <div className="shrink-0 ml-10 sm:ml-0">
                     {isContinue ? (
-                      <button className="px-4 py-2 rounded-full border border-teal-200 bg-white text-teal-600 text-sm font-semibold hover:bg-teal-50/50 transition-colors">
+                      <button className="px-4 py-2 rounded-full border border-teal-200 bg-white text-teal-600 text-sm font-semibold hover:bg-teal-50/50 transition-colors whitespace-nowrap">
                         Continue
                       </button>
                     ) : isCompleted ? (
                       null
                     ) : (
-                      <button className="px-6 py-2 rounded-full border border-gray-200 bg-white text-gray-400 text-sm font-bold">
+                      <button className="px-6 py-2 rounded-full border border-gray-200 bg-white text-gray-400 text-sm font-bold whitespace-nowrap">
                         Start
                       </button>
                     )}
