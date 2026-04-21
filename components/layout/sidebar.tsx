@@ -38,7 +38,7 @@ export function Sidebar() {
 
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col pt-6 pb-4">
-      <div className="px-6 mb-8 flex items-center gap-2">
+      <div className="px-6 mb-8 flex items-center gap-2 border-b border-gray-100 pb-6">
            <Image src="/images/logo.svg" alt="consult-it-open" width={32} height={32} />
         <span className="font-bold text-xl text-gray-900 tracking-tight">ConsulTOpen</span>
       </div>
@@ -57,7 +57,7 @@ export function Sidebar() {
                   : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
               }`}
             >
-              <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
+              <Icon className={`w-5 h-5 ${isActive ? "text-white" : "text-gray-500"}`} strokeWidth={isActive ? 2.5 : 2} />
               {link.name}
             </Link>
           );
@@ -68,13 +68,14 @@ export function Sidebar() {
         <div className="space-y-1">
           {BOTTOM_LINKS.map((link) => {
             const Icon = link.icon;
+            const isActive = pathname === link.href;
             return (
               <Link
                 key={link.name}
                 href={link.href}
                 className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
               >
-                <Icon className="w-5 h-5" strokeWidth={2} />
+                <Icon className={`w-5 h-5 ${isActive ? "text-white" : "text-gray-500"}`} strokeWidth={2} />
                 {link.name}
               </Link>
             );

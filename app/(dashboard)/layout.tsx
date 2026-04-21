@@ -8,16 +8,14 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="flex bg-[#F8F9FB] min-h-screen">
-      {/* Sidebar is fixed on the left */}
-      <Sidebar />
+      <div className="sticky top-0 h-screen shrink-0">
+        <Sidebar />
+      </div>
       
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden">
-        {/* Header is at the top of the right area */}
+      <div className="flex-1 flex flex-col">
         <Header />
         
-        {/* Scrollable page content */}
-        <main className="flex-1 overflow-y-auto w-full">
+        <main className="flex-1 w-full">
           {children}
         </main>
       </div>
