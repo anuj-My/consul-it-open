@@ -84,7 +84,7 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-auto px-4 pt-4">
-        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
           <div className="w-10 h-10 rounded-full bg-green-200 overflow-hidden shrink-0">
             <img 
                src="/images/Student Avatar.png" 

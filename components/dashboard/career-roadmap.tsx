@@ -11,7 +11,7 @@ const MILESTONES = [
 
 export function CareerRoadmap() {
   return (
-    <div className="bg-white rounded-xl border p-6">
+    <div className="bg-white rounded-lg border p-6">
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-2">
           <Map className="w-5 h-5 text-teal-600" />
@@ -49,7 +49,7 @@ export function CareerRoadmap() {
         </div>
       </div>
 
-      <div className="bg-[#F0F9F6] rounded-xl px-5 py-4 flex items-center justify-between">
+      <div className="bg-[#F0F9F6] rounded-lg px-5 border py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Target className="w-5 h-5 text-teal-500" strokeWidth={2.5} />
           <span className="text-sm font-medium text-teal-500">

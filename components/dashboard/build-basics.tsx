@@ -1,6 +1,4 @@
-"use client";
-
-import { ClipboardCheck, Lock, CheckCircle2, ArrowRight } from "lucide-react";
+import { Square, CheckSquare, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 type TaskStatus = "locked" | "continue" | "completed";
@@ -8,129 +6,127 @@ type TaskStatus = "locked" | "continue" | "completed";
 interface BuildTask {
   title: string;
   subject: string;
-  subjectColor: string;
   status: TaskStatus;
-  score?: number;
 }
 
 const TASKS: BuildTask[] = [
   {
-    title: "Study Motion and Energy Concepts",
-    subject: "Science",
-    subjectColor: "bg-pink-100 text-pink-600",
+    title: "Units",
+    subject: "Test",
     status: "locked",
   },
   {
     title: "Practice Algebra Problems Daily",
     subject: "Maths",
-    subjectColor: "bg-pink-100 text-pink-600",
     status: "locked",
   },
   {
     title: "Study Motion and Energy Concepts",
     subject: "Science",
-    subjectColor: "bg-blue-100 text-blue-600",
     status: "continue",
   },
   {
     title: "Solve 20 Maths Question Daily",
     subject: "Maths",
-    subjectColor: "bg-orange-100 text-orange-600",
     status: "completed",
-    score: 98,
   },
   {
     title: "Watch a Science Concept Video",
     subject: "Exploration",
-    subjectColor: "bg-red-100 text-red-600",
     status: "completed",
   },
   {
     title: "Follow a Weekly Study Plan",
-    subject: "Habits",
-    subjectColor: "bg-green-100 text-green-600",
+    subject: "Habbit",
     status: "completed",
   },
 ];
 
+const SUBJECT_COLORS: Record<string, string> = {
+  Science: "bg-[#FDF8E6] text-[#A18131] border-0",
+  Maths: "bg-[#E7F9EF] text-[#2D9B63] border-0",
+  Exploration: "bg-[#E7F9EF] text-[#2D9B63] border-0",
+  Habbit: "bg-[#FCEEF4] text-[#C44D7D] border-0",
+  Test: "bg-[#EBEAFE] text-[#6366F1] border-0",
+};
+
 export function BuildBasics() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-      <div className="flex items-center gap-2 mb-5">
-        <ClipboardCheck className="w-5 h-5 text-teal-600" />
-        <h2 className="font-bold text-gray-900">Build Basics</h2>
+    <div className="bg-white rounded-lg border p-6">
+      <div className="flex items-center gap-2 mb-6">
+        <CheckSquare className="w-6 h-6 text-teal-500" strokeWidth={2.5} />
+        <h2 className="font-bold text-gray-900 text-lg">Build Basics</h2>
       </div>
 
-      <div className="space-y-2.5">
-        {TASKS.map((task, i) => (
-          <div
-            key={i}
-            className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all ${
-              task.status === "locked"
-                ? "bg-gray-50/50 border-gray-100 opacity-60"
-                : task.status === "continue"
-                ? "bg-white border-gray-200 hover:border-teal-200 hover:shadow-sm"
-                : "bg-white border-gray-100"
-            }`}
-          >
-            {/* Status Icon */}
-            <div className="shrink-0">
-              {task.status === "locked" ? (
-                <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center">
-                  <Lock className="w-3 h-3 text-gray-400" />
-                </div>
-              ) : task.status === "continue" ? (
-                <div className="w-6 h-6 rounded border-2 border-gray-300" />
-              ) : (
-                <div className="w-6 h-6 rounded bg-teal-500 flex items-center justify-center">
-                  <CheckCircle2 className="w-4 h-4 text-white" />
-                </div>
-              )}
-            </div>
+      <div className="space-y-4">
+        {TASKS.map((task, i) => {
+          const isLocked = task.status === "locked";
+          const isContinue = task.status === "continue";
+          const isCompleted = task.status === "completed";
 
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-              <p
-                className={`text-sm font-medium ${
-                  task.status === "completed"
-                    ? "line-through text-gray-400"
-                    : "text-gray-800"
-                }`}
-              >
-                {task.title}
-              </p>
-              <Badge
-                variant="secondary"
-                className={`${task.subjectColor} text-[10px] font-bold px-2 py-0.5 mt-1 border-0`}
-              >
-                {task.subject}
-              </Badge>
-            </div>
+          return (
+            <div
+              key={i}
+              className={`relative overflow-hidden group border rounded-lg p-5 transition-all ${
+                isLocked 
+                  ? "bg-[#F5F5F5] border-gray-100 flex items-center justify-between" 
+                  : "bg-white border-gray-200"
+              }`}
+            >
+              <div className={`flex items-center gap-4 w-full ${isLocked ? "blur-[2.5px] opacity-40 select-none pointer-events-none" : ""}`}>
+                <div className="shrink-0">
+                  {isCompleted ? (
+                    <div className="w-6 h-6 rounded bg-teal-400 flex items-center justify-center">
+                      <CheckSquare className="w-5 h-5 text-white" />
+                    </div>
+                  ) : (
+                    <Square className="w-6 h-6 text-gray-400" />
+                  )}
+                </div>
 
-            {/* Action */}
-            <div className="shrink-0">
-              {task.status === "locked" ? (
-                <span className="text-xs text-gray-400 font-medium flex items-center gap-1">
-                  <Lock className="w-3 h-3" /> Locked
-                </span>
-              ) : task.status === "continue" ? (
-                <button className="text-xs text-teal-600 font-bold hover:text-teal-700 transition-colors flex items-center gap-1">
-                  Continue <ArrowRight className="w-3 h-3" />
-                </button>
-              ) : task.score ? (
-                <div className="w-11 h-11 rounded-full border-[3px] border-teal-500 flex items-center justify-center">
-                  <div className="text-center leading-tight">
-                    <span className="text-xs font-bold text-teal-700">{task.score}%</span>
+                <div className="flex-1">
+                  <h3 className={`font-bold text-sm tracking-tight ${isCompleted ? "text-gray-400 font-medium line-through" : "text-gray-800"}`}>
+                    {task.title}
+                  </h3>
+                  <Badge className={`${SUBJECT_COLORS[task.subject]} text-[11px] font-bold mt-1 px-3 py-0.5 rounded-full`}>
+                    {task.subject}
+                  </Badge>
+                </div>
+
+                {!isLocked && (
+                  <div className="shrink-0">
+                    {isContinue ? (
+                      <button className="px-4 py-2 rounded-full border border-teal-200 bg-white text-teal-600 text-sm font-semibold hover:bg-teal-50/50 transition-colors">
+                        Continue
+                      </button>
+                    ) : isCompleted ? (
+                      null
+                    ) : (
+                      <button className="px-6 py-2 rounded-full border border-gray-200 bg-white text-gray-400 text-sm font-bold">
+                        Start
+                      </button>
+                    )}
                   </div>
+                )}
+              </div>
+
+              {isLocked && (
+                <div className="absolute inset-0 flex items-center justify-center gap-2">
+                   <div className="flex flex-col items-center gap-1">
+                      <Lock className="w-5 h-5 text-gray-400" />
+                      <span className="text-xs font-bold text-gray-400">Locked</span>
+                   </div>
+                   
+                   <div className="absolute right-5">
+                      <div className="px-6 py-2 rounded-full border border-teal-500 bg-white/50 text-teal-500 text-sm font-bold blur-[1px]">
+                        Start
+                      </div>
+                   </div>
                 </div>
-              ) : (
-                <Badge variant="outline" className="text-[10px] text-gray-500 border-gray-300 font-medium">
-                  Completed
-                </Badge>
               )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

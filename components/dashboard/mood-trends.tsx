@@ -22,7 +22,7 @@ const MOOD_DATA = [
 
 export function MoodTrends() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+    <div className="bg-white rounded-lg border p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <BarChart3 className="w-5 h-5 text-orange-500" />
@@ -58,7 +58,7 @@ export function MoodTrends() {
       </div>
 
       {/* Insight */}
-      <div className="flex items-start gap-2 p-3 bg-amber-50 rounded-xl border border-amber-100">
+      <div className="flex items-start gap-2 p-3 bg-amber-50 rounded-lg border border-amber-100">
         <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
         <p className="text-[11px] text-amber-700 leading-relaxed">
           Your mood this week suggests increased stress related to your future.

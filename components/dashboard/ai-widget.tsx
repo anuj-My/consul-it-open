@@ -38,7 +38,7 @@ export function AIWidget() {
           placeholder="Type your specific question here..."
           className="resize-none w-full px-4 py-3 pr-12 rounded-lg border border-gray-200 bg-gray-50/50 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-400 transition-all"
         />
-        <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center hover:from-teal-600 hover:to-emerald-600 transition-all shadow-sm">
+        <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center hover:from-teal-600 hover:to-emerald-600 transition-all">
           <Send className="w-4 h-4 text-white" />
         </button>
       </div>

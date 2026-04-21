@@ -26,7 +26,7 @@ export function Header() {
           <MessageSquare className="w-5 h-5" />
         </button>
 
-        <button className="bg-[#1C1C1C] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-black transition-colors shadow-sm">
+        <button className="bg-[#1C1C1C] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-black transition-colors">
           Upgrade Plan
         </button>
       </div>

@@ -48,7 +48,7 @@ const CARDS: GymCard[] = [
 
 export function MindGym() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+    <div className="bg-white rounded-lg border p-6">
       <div className="flex items-center gap-2 mb-1">
         <Brain className="w-5 h-5 text-purple-600" />
         <h2 className="font-bold text-gray-900">Mind Gym</h2>
@@ -61,7 +61,7 @@ export function MindGym() {
         {CARDS.map((card) => (
           <div
             key={card.title}
-            className={`bg-gradient-to-br ${card.bgFrom} ${card.bgTo} rounded-xl p-4 text-white relative overflow-hidden group hover:shadow-lg hover:shadow-current/10 transition-all cursor-pointer`}
+            className={`bg-gradient-to-br ${card.bgFrom} ${card.bgTo} rounded-lg p-4 text-white relative overflow-hidden group transition-all cursor-pointer`}
           >
             {/* Background glow */}
             <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full -mr-4 -mt-4 blur-xl" />

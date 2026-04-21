@@ -4,7 +4,7 @@ import { Sparkles, Star, ArrowRight } from "lucide-react";
 
 export function Recommendation() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+    <div className="bg-white rounded-lg border p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-amber-500" />
@@ -33,7 +33,7 @@ export function Recommendation() {
           <span className="text-xs text-gray-400">(120+ Sessions)</span>
         </div>
 
-        <button className="w-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-sm font-bold py-3 rounded-xl hover:from-teal-600 hover:to-emerald-600 transition-all shadow-md shadow-teal-200/50 flex items-center justify-center gap-2 group">
+        <button className="w-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-sm font-bold py-3 rounded-lg hover:from-teal-600 hover:to-emerald-600 transition-all flex items-center justify-center gap-2 group">
           Book a Therapy Session
           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
