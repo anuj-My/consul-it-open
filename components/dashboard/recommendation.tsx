@@ -2,7 +2,7 @@
 
 import { Sparkles, Star, ArrowRight } from "lucide-react";
 
-export function Recommendation() {
+export function Recommendation() { 
   return (
     <div className="bg-white rounded-lg border p-6">
       <div className="flex items-center justify-between mb-4">

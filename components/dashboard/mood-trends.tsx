@@ -1,66 +1,75 @@
 "use client";
 
-import { BarChart3, AlertTriangle } from "lucide-react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-  Cell,
-} from "recharts";
+import { Activity, AlertTriangle } from "lucide-react";
+import Image from "next/image";
 
-const MOOD_DATA = [
-  { day: "Mon", value: 60, color: "#f97316" },
-  { day: "Tue", value: 85, color: "#f97316" },
-  { day: "Wed", value: 45, color: "#ef4444" },
-  { day: "Thu", value: 70, color: "#eab308" },
-  { day: "Fri", value: 90, color: "#22c55e" },
-  { day: "Sat", value: 95, color: "#22c55e" },
-  { day: "Sun", value: 50, color: "#eab308" },
+const MOOD_HISTORY = [
+  { day: "Mon", height: "120px", color: "bg-gradient-to-t from-[#9760CE] to-[#C7A3E5]", icon: "/images/Layer 1.svg" },
+  { day: "Tue", height: "120px", color: "bg-gradient-to-t from-[#70AD40] to-[#9CD072]", icon: "/images/calm 1.svg" },
+  { day: "Wed", height: "120px", color: "bg-gradient-to-t from-[#D82675] to-[#F18EB8]", icon: "/images/Group 427319065.svg" },
+  { day: "Thu", height: "120px", color: "bg-gradient-to-t from-[#00BEBF] to-[#6EE7E7]", icon: "/images/Group 427319068.svg" },
+  { day: "Fri", height: "120px", color: "bg-gradient-to-t from-[#EF4D4D] to-[#FF9090]", icon: "/images/Group 427319066.svg" },
+  { day: "Sat", height: "120px", isPlaceholder: true },
+  { day: "Sun", height: "120px", isPlaceholder: true },
 ];
 
 export function MoodTrends() {
   return (
     <div className="bg-white rounded-lg border p-6">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-orange-500" />
-          <h2 className="font-bold text-gray-900">Mood & Activity Trends</h2>
+      <div>
+
+      <div className="flex items-center justify-between mb-1">
+        <div className="flex gap-3">
+          <div className="mt-1">
+            <Activity className="w-5 h-5 text-[#E91E63]" />
+          </div>
+          
+            <h2 className="font-semibold text-gray-900 text-base leading-tight">Mood & Activity Trends</h2>
+            
         </div>
-        <span className="text-xs text-gray-500 font-medium bg-gray-100 px-2.5 py-1 rounded-md">
+        <button className="text-xs font-medium text-gray-900 border border-gray-100 rounded-md px-2 py-1.5 hover:bg-gray-50 transition-colors">
           This Week
-        </span>
+        </button>
       </div>
 
-      <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-        Embrace well-being & positive occupation based on your daily track history.
-      </p>
+      <p className="text-xs text-gray-500 leading-relaxed max-w-[280px]">
+              Emotional wellbeing & platform engagement based on your daily check-ins.
+            </p>
+      </div>
 
-      {/* Bar chart */}
-      <div className="h-[140px] mb-4">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={MOOD_DATA} barCategoryGap="25%">
-            <XAxis
-              dataKey="day"
-              axisLine={false}
-              tickLine={false}
-              tick={{ fontSize: 11, fill: "#9ca3af" }}
+      <div className="flex items-end justify-between px-2 mb-4 mt-5">
+        {MOOD_HISTORY.map((item, index) => (
+          <div key={index} className="flex flex-col items-center justify-end h-full w-8">
+            {!item.isPlaceholder && (
+              <div className="relative w-6 h-6 z-10 shrink-0 mb-1">
+                <Image
+                  src={item.icon}
+                  alt={item.day}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            )}
+            
+            <div 
+              className={`w-[24px] rounded-sm relative transition-all duration-700 ease-out ${
+                item.isPlaceholder 
+                  ? "bg-gray-100" 
+                  : item.color
+              }`}
+              style={{ height: item.height }}
             />
-            <YAxis hide />
-            <Bar dataKey="value" radius={[6, 6, 0, 0]}>
-              {MOOD_DATA.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+            
+            <span className="text-sm font-medium text-[#94a3b8] mt-3 whitespace-nowrap">{item.day}</span>
+          </div>
+        ))}
       </div>
 
-      {/* Insight */}
-      <div className="flex items-start gap-2 p-3 bg-amber-50 rounded-lg border border-amber-100">
-        <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-        <p className="text-[11px] text-amber-700 leading-relaxed">
+      <div className="flex items-start gap-3 mt-6">
+        <div className="mt-1">
+          <AlertTriangle className="w-5 h-5 text-orange-500" />
+        </div>
+        <p className="text-sm text-[#334155] leading-relaxed font-medium">
           Your mood this week suggests increased stress related to your future.
         </p>
       </div>
