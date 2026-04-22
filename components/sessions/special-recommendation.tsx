@@ -4,7 +4,7 @@ import { Sparkles, Star, ArrowRight } from "lucide-react";
 
 export function SpecialRecommendation() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+    <div className="bg-white rounded-lg border p-6">
       <div className="flex items-center justify-center gap-2 mb-5">
         <Sparkles className="w-5 h-5 text-red-500" />
         <h2 className="font-bold text-red-500">Special Recommendation</h2>

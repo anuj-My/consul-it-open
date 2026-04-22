@@ -100,7 +100,7 @@ export function SessionsRoadmap() {
 
               <div className="flex-1 min-w-0">
                 <div
-                  className={`rounded-2xl border transition-all duration-300 ${
+                  className={`rounded-lg border transition-all duration-300 ${
                     isActive
                       ? "bg-white border-[#1a9ba1] p-8"
                       : "bg-white border p-6 opacity-70"
