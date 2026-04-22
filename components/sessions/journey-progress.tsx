@@ -3,63 +3,60 @@
 import { Target } from "lucide-react";
 
 export function JourneyProgress() {
-  const percentage = 35;
-  const radius = 54;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
-
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-      <div className="flex items-center gap-2 mb-6">
-        <Target className="w-5 h-5 text-amber-500" />
-        <h2 className="font-bold text-gray-900">Journey Progress</h2>
-      </div>
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+      <div className="p-6 pb-4">
+        <div className="flex items-center gap-2.5 mb-8">
+          <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center">
+            <Target className="w-4 h-4 text-orange-500" />
+          </div>
+          <h2 className="font-bold text-gray-800 tracking-tight">Journey Progress</h2>
+        </div>
 
-      {/* Donut Chart */}
-      <div className="flex justify-center mb-6">
-        <div className="relative w-32 h-32">
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
-            {/* Background circle */}
-            <circle
-              cx="60"
-              cy="60"
-              r={radius}
-              fill="none"
-              stroke="#f3f4f6"
-              strokeWidth="10"
-            />
-            {/* Progress circle */}
-            <circle
-              cx="60"
-              cy="60"
-              r={radius}
-              fill="none"
-              stroke="#f97316"
-              strokeWidth="10"
-              strokeLinecap="round"
-              strokeDasharray={circumference}
-              strokeDashoffset={strokeDashoffset}
-              className="transition-all duration-1000 ease-out"
-            />
-          </svg>
-          {/* Center text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-2xl font-bold text-orange-500">{percentage}%</span>
-            <span className="text-[10px] text-gray-500 font-medium">Completed</span>
+        {/* Donut Chart */}
+        <div className="flex justify-center mb-10">
+          <div className="relative w-40 h-40">
+            <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+              <circle
+                cx="60"
+                cy="60"
+                r="50"
+                fill="none"
+                stroke="#F1F5F9"
+                strokeWidth="8"
+              />
+              <circle
+                cx="60"
+                cy="60"
+                r="50"
+                fill="none"
+                stroke="#F97316"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeDasharray="314.159"
+                strokeDashoffset="204.2" 
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
+              <span className="text-3xl font-black text-orange-500">35%</span>
+              <span className="text-[11px] font-bold text-gray-400 mt-2">Completed</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="flex items-center justify-center gap-8">
-        <div className="text-center">
-          <p className="text-xl font-bold text-gray-900">3</p>
-          <p className="text-xs text-gray-500">Tasks Done</p>
+      {/* Divider */}
+      <div className="w-full h-px bg-gray-100" />
+
+      {/* Stats Section with Divider */}
+      <div className="grid grid-cols-2 divide-x divide-gray-100 py-6">
+        <div className="text-center px-2">
+          <p className="text-xl font-bold text-gray-900 mb-0.5">3</p>
+          <p className="text-[11px] font-bold text-gray-400">Tasks Done</p>
         </div>
-        <div className="w-px h-8 bg-gray-200" />
-        <div className="text-center">
-          <p className="text-xl font-bold text-gray-900">1</p>
-          <p className="text-xs text-gray-500">Milestones</p>
+        <div className="text-center px-2">
+          <p className="text-xl font-bold text-gray-900 mb-0.5">1</p>
+          <p className="text-[11px] font-bold text-gray-400">Milestones</p>
         </div>
       </div>
     </div>
