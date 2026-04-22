@@ -12,7 +12,7 @@ export default function DashboardLayout({
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex bg-[#F8F9FB] min-h-screen relative overflow-x-hidden">
+    <div className="flex bg-white min-h-screen relative overflow-x-hidden">
       {isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-40 lg:hidden" 
