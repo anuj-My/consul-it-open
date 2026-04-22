@@ -78,15 +78,15 @@ const MILESTONES: Milestone[] = [
 export function SessionsRoadmap() {
   return (
     <div className="relative">
-      <div className="absolute left-[15px] top-6 bottom-6 w-0.5 bg-gray-100" />
+      <div className="absolute left-[15px] top-6 bottom-6 w-0.5 bg-gray-100 hidden sm:block" />
 
       <div className="space-y-6">
         {MILESTONES.map((milestone, index) => {
           const isActive = milestone.status === "active";
           
           return (
-            <div key={milestone.title} className="relative flex gap-8">
-              <div className="relative z-10 shrink-0 mt-3">
+            <div key={milestone.title} className="relative flex sm:gap-8">
+              <div className="relative z-10 shrink-0 mt-3 hidden sm:block">
                 {isActive ? (
                   <div className="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center shadow-[0_0_15px_rgba(20,184,166,0.3)] ring-4 ring-white">
                     <CheckCircle2 className="w-5 h-5 text-white" />
@@ -102,8 +102,8 @@ export function SessionsRoadmap() {
                 <div
                   className={`rounded-lg border transition-all duration-300 ${
                     isActive
-                      ? "bg-white border-[#1a9ba1] p-8"
-                      : "bg-white border p-6 opacity-70"
+                      ? "bg-white border-[#1a9ba1] p-5 sm:p-8"
+                      : "bg-white border p-4 sm:p-6 opacity-70"
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
