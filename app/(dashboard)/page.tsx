@@ -30,7 +30,19 @@ export default function Home() {
            <div className="bg-white rounded-lg space-y-6 border p-6">
           <MoodTrends />
           <div className="border-b border-gray-100 mb-8"></div>
-          <Recommendation />
+          <Recommendation 
+            variant="pink"
+            badgeText="Based on mood log"
+            title="Recommended for You"
+            consultant={{
+              name: "Emma Watson",
+              role: "(Student Wellbeing Therapist)",
+              image: "/images/Counselor Emma.png",
+              rating: 4.9,
+              sessions: "(120+ Sessions)"
+            }}
+            buttonText="Book a Therapy Session"
+          />
 
            </div>
           <SkillsProgress />

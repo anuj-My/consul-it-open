@@ -1,7 +1,7 @@
 import {  Map } from "lucide-react";
 import { SessionsRoadmap } from "@/components/sessions/sessions-roadmap";
 import { JourneyProgress } from "@/components/sessions/journey-progress";
-import { SpecialRecommendation } from "@/components/sessions/special-recommendation";
+import { Recommendation } from "@/components/dashboard/recommendation";
 import { QuickResources } from "@/components/sessions/quick-resources";
 
 export default function CareerRoadmapPage() {
@@ -22,7 +22,19 @@ export default function CareerRoadmapPage() {
 
         <div className="space-y-6">
           <JourneyProgress />
-          <SpecialRecommendation />
+          <Recommendation 
+            variant="emerald"
+            showSpecialHeader={true}
+            title="Need Help Planning?"
+            description="Discuss your current progress and board preparation strategy."
+            consultant={{
+              name: "Mukund Tyagi",
+              role: "(Academic Planner & Counsellor)",
+              image: "/images/mukund_tyagi.png",
+              rating: 4.2
+            }}
+            buttonText="Book a Session"
+          />
           <QuickResources />
         </div>
       </div>
