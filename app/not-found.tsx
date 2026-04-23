@@ -5,14 +5,15 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#F8F9FB] flex items-center justify-center p-6">
       <div className="max-w-md w-full text-center">
-
         <div className="bg-white rounded-lg p-8 sm:p-12 border">
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="text-8xl font-black text-gray-100 select-none">404</div>
+              <div className="text-8xl font-black text-gray-100 select-none">
+                404
+              </div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center rotate-12 shadow-sm">
-                  <FileQuestion className="w-8 h-8 text-[#1a9ba1] -rotate-12" />
+                  <FileQuestion className="w-8 h-8 text-teal-500 -rotate-12" />
                 </div>
               </div>
             </div>
@@ -27,13 +28,12 @@ export default function NotFound() {
 
           <Link
             href="/"
-            className="w-fit mx-auto bg-[#1a9ba1] hover:bg-[#16858a] text-white font-bold py-2.5 px-8 rounded-lg transition-all flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]"
+            className="w-fit mx-auto bg-teal-500 hover:bg-teal-600 text-white font-bold py-2.5 px-8 rounded-lg transition-all flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </Link>
         </div>
-
       </div>
     </div>
   );
