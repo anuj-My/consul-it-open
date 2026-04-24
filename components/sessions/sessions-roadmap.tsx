@@ -2,90 +2,28 @@
 
 import { CheckCircle2, LoaderCircle, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { TaskRow, type SessionTask } from "./task-row";
-
-interface Milestone {
-  title: string;
-  description: string;
-  status: "active" | "locked";
-  tasks?: SessionTask[];
-  taskProgress?: { completed: number; total: number };
-}
-
-const BUILD_BASICS_TASKS: SessionTask[] = [
-  {
-    title: "Study Motion and Energy Concepts",
-    subject: "Science",
-    subjectColor: "bg-[#FFF4ED] text-[#EA580C]",
-    status: "locked",
-  },
-  {
-    title: "Study Motion and Energy Concepts",
-    subject: "Science",
-    subjectColor: "bg-[#FFF4ED] text-[#EA580C]",
-    status: "locked",
-  },
-  {
-    title: "Study Motion and Energy Concepts",
-    subject: "Science",
-    subjectColor: "bg-[#FFF4ED] text-[#EA580C]",
-    status: "continue",
-  },
-  {
-    title: "Solve 20 Maths Question Daily",
-    subject: "Maths",
-    subjectColor: "bg-[#E7F8F7] text-[#1a9ba1]",
-    status: "completed",
-    score: 98,
-  },
-  {
-    title: "Watch a Science Concept Video",
-    subject: "Video • 10 Mins",
-    subjectColor: "bg-[#FDF2F8] text-[#DB2777]",
-    status: "completed",
-  },
-];
-
-const MILESTONES: Milestone[] = [
-  {
-    title: "Build Basics",
-    description:
-      "You'll build a strong foundation in foundational math and science principles.",
-    status: "active",
-    tasks: BUILD_BASICS_TASKS,
-    taskProgress: { completed: 3, total: 6 },
-  },
-  {
-    title: "Strengthen Concepts",
-    description:
-      "Dive deeper into advanced topics to prepare for your board exams.",
-    status: "locked",
-  },
-  {
-    title: "Score in Boards",
-    description:
-      "Achieve target scores in preliminary and final board examinations.",
-    status: "locked",
-  },
-  {
-    title: "PCM Stream Selection",
-    description:
-      "Finalize stream choice based on aptitude and board results.",
-    status: "locked",
-  },
-];
+import { TaskRow } from "./task-row";
+import { initialRoadmapData } from "@/data/data";
 
 export function SessionsRoadmap() {
+  const sessions = initialRoadmapData.sessions;
+
   return (
     <div className="relative">
+      {/* Timeline Line */}
       <div className="absolute left-[15px] top-6 bottom-6 w-0.5 bg-gray-100 hidden sm:block" />
 
       <div className="space-y-6">
-        {MILESTONES.map((milestone, index) => {
-          const isActive = milestone.status === "active";
+        {sessions.map((session, index) => {
+          // Dynamic Progress Calculation
+          const totalTasks = session.tasks.length;
+          const completedTasks = session.tasks.filter(t => t.isCompleted).length;
+          const progressPercentage = Math.round((completedTasks / totalTasks) * 100);
+          
+          const isActive = !session.isLocked;
           
           return (
-            <div key={milestone.title} className="relative flex sm:gap-8">
+            <div key={session.id} className="relative flex sm:gap-8">
               <div className="relative z-10 shrink-0 mt-3 hidden sm:block">
                 {isActive ? (
                   <div className="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center shadow-[0_0_15px_rgba(20,184,166,0.3)] ring-4 ring-white">
@@ -102,13 +40,13 @@ export function SessionsRoadmap() {
                 <div
                   className={`rounded-lg border transition-all duration-300 ${
                     isActive
-                      ? "bg-white border-[#1a9ba1] p-5 sm:p-8"
+                      ? "bg-white border-[#1a9ba1] p-5 sm:p-8 shadow-sm"
                       : "bg-white border p-4 sm:p-6 opacity-70"
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <h3 className={`font-bold text-lg text-gray-900`}>
-                      {milestone.title}
+                      {session.title}
                     </h3>
                     {isActive ? (
                       <Badge className="bg-[#E7F8F7] text-[#1a9ba1] hover:bg-[#E7F8F7] border-0 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 shrink-0">
@@ -122,7 +60,7 @@ export function SessionsRoadmap() {
                   </div>
 
                   <p className={`text-sm mb-6 text-gray-500`}>
-                    {milestone.description}
+                    {session.description}
                   </p>
 
                   {isActive && (
@@ -130,27 +68,29 @@ export function SessionsRoadmap() {
                       <div className="mb-6">
                         <div className="flex items-end justify-between mb-2 text-xs">
                           <span className="font-semibold text-gray-800">
-                             3 of 6 tasks completed
+                             {completedTasks} of {totalTasks} tasks completed
                           </span>
                           <span className="font-semibold text-[#1a9ba1] text-xs">
-                            60%
+                            {progressPercentage}%
                           </span>
                         </div>
                         <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
                           <div 
                             className="h-full bg-[#1a9ba1] rounded-full transition-all duration-1000 ease-out"
-                            style={{ width: "60%" }}
+                            style={{ width: `${progressPercentage}%` }}
                           />
                         </div>
                       </div>
 
-                      {milestone.tasks && (
-                        <div className="space-y-4 pt-2">
-                          {milestone.tasks.map((task, i) => (
-                            <TaskRow key={i} task={task} />
-                          ))}
-                        </div>
-                      )}
+                      <div className="space-y-4 pt-2">
+                        {session.tasks.map((task) => (
+                          <TaskRow 
+                            key={task.id} 
+                            task={task} 
+                            variant="detailed" 
+                          />
+                        ))}
+                      </div>
                     </>
                   )}
                 </div>

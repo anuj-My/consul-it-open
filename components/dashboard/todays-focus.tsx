@@ -71,7 +71,8 @@ export function TodaysFocus() {
           <Image 
             src="/images/Layer 2.png" 
             alt="Calm" 
-            fill 
+            width={48} 
+          height={48} 
             className="object-contain"
           />
         </div>

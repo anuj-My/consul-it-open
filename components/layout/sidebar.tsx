@@ -45,7 +45,7 @@ export function Sidebar({ onClose }: SidebarProps) {
     <div className="w-64 h-full bg-white border-r border-gray-100 flex flex-col pt-6 pb-4 shadow-xl lg:shadow-none">
       <div className="px-6 mb-8 flex items-center justify-between border-b border-gray-100 pb-6 shrink-0">
         <div className="flex items-center gap-2">
-           <Image src="/images/logo.svg" alt="consult-it-open" width={32} height={32} />
+           <Image src="/images/logo.svg" alt="consult-it-open" className="w-8 h-8" width={32} height={32} />
           <span className="font-bold text-xl text-gray-900 tracking-tight">ConsulTOpen</span>
         </div>
 
