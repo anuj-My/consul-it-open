@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { initialRoadmapData } from "@/data/data";
 import { RoadmapData, Session, Task } from "@/types/roadmap";
@@ -16,14 +16,15 @@ const RoadmapContext = createContext<RoadmapContextType | undefined>(undefined);
 
 
 const RoadmapProvider = ({children}:{children: React.ReactNode}) =>{
- const getDataFromStorage = () =>{
-     if (typeof window === 'undefined') return initialRoadmapData;
-        const data = localStorage.getItem('roadmapData')
-        return data ? JSON.parse(data) : initialRoadmapData
-    }
 
-    const [data, setData] = useState<RoadmapData>(getDataFromStorage)
+    const [data, setData] = useState<RoadmapData>(initialRoadmapData)
 
+   useEffect(() => {
+        const saved = localStorage.getItem('roadmapData');
+        if (saved) {
+            setData(JSON.parse(saved));
+        }
+    }, []);
 
     const saveDataToStorage  = () =>{
         localStorage.setItem('roadmapData', JSON.stringify(data))

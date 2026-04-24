@@ -1,8 +1,19 @@
 "use client";
 
+import { useRoadmapContext } from "@/context/RoadmapContext";
 import { Target } from "lucide-react";
 
 export function JourneyProgress() {
+
+  const {getProgress} = useRoadmapContext()
+
+  const progress = getProgress()
+
+  const r = 50;
+  const circumference = 2 * Math.PI * r;
+  const offset = circumference - (progress / 100) * circumference;
+
+
   return (
     <div className="bg-white rounded-lg border overflow-hidden">
       <div className="p-6 pb-4">
@@ -19,7 +30,7 @@ export function JourneyProgress() {
               <circle
                 cx="60"
                 cy="60"
-                r="50"
+                r={r}
                 fill="none"
                 stroke="#F1F5F9"
                 strokeWidth="8"
@@ -27,16 +38,16 @@ export function JourneyProgress() {
               <circle
                 cx="60"
                 cy="60"
-                r="50"
+                r={r}
                 fill="none"
                 stroke="#F97316"
                 strokeWidth="8"
-                strokeDasharray="314.159"
-                strokeDashoffset="204.2" 
+                strokeDasharray={circumference}
+                strokeDashoffset={offset} 
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
-              <span className="text-2xl font-bold text-orange-500">35%</span>
+              <span className="text-2xl font-bold text-orange-500">{progress}%</span>
               <span className="text-xs font-medium tracking-wider text-gray-400 mt-2">Completed</span>
             </div>
           </div>

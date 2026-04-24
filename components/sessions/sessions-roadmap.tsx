@@ -12,12 +12,10 @@ export function SessionsRoadmap() {
 
   return (
     <div className="relative">
-      {/* Timeline Line */}
       <div className="absolute left-[15px] top-6 bottom-6 w-0.5 bg-gray-100 hidden sm:block" />
 
       <div className="space-y-6">
-        {sessions.map((session, index) => {
-          // Dynamic Progress Calculation
+        {sessions.map((session) => {
           const totalTasks = session.tasks.length;
           const completedTasks = session.tasks.filter(t => t.isCompleted).length;
           const progressPercentage = Math.round((completedTasks / totalTasks) * 100);

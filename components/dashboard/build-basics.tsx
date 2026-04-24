@@ -1,4 +1,4 @@
-
+'use client'
 import { CheckSquare } from "lucide-react";
 import { TaskRow } from "@/components/sessions/task-row";
 import { useRoadmapContext } from "@/context/RoadmapContext";
