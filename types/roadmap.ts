@@ -5,7 +5,6 @@ export interface Task {
   isCompleted: boolean;
   subject: string;
   subjectColor: string;
-  score?: number;
 }
 
 export interface Session {

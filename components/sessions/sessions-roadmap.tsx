@@ -6,7 +6,7 @@ import { TaskRow } from "./task-row";
 import { useRoadmapContext } from "@/context/RoadmapContext";
 
 export function SessionsRoadmap() {
-  const {data} = useRoadmapContext()
+  const { data } = useRoadmapContext();
 
   const sessions = data.sessions;
 
@@ -17,11 +17,15 @@ export function SessionsRoadmap() {
       <div className="space-y-6">
         {sessions.map((session) => {
           const totalTasks = session.tasks.length;
-          const completedTasks = session.tasks.filter(t => t.isCompleted).length;
-          const progressPercentage = Math.round((completedTasks / totalTasks) * 100);
-          
+          const completedTasks = session.tasks.filter(
+            (t) => t.isCompleted,
+          ).length;
+          const progressPercentage = Math.round(
+            (completedTasks / totalTasks) * 100,
+          );
+
           const isActive = !session.isLocked;
-          
+
           return (
             <div key={session.id} className="relative flex sm:gap-8">
               <div className="relative z-10 shrink-0 mt-3 hidden sm:block">
@@ -49,11 +53,21 @@ export function SessionsRoadmap() {
                       {session.title}
                     </h3>
                     {isActive ? (
-                      <Badge className="bg-[#E7F8F7] text-[#1a9ba1] hover:bg-[#E7F8F7] border-0 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 shrink-0">
-                        <LoaderCircle className="w-3.5 h-3.5 animate-spin-slow" /> In Progress
-                      </Badge>
+                      completedTasks === totalTasks ? (
+                        <Badge className="bg-[#E7F8F7] text-[#1a9ba1] hover:bg-[#E7F8F7] border-0 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 shrink-0">
+                          <CheckCircle2 className="w-3.5 h-3.5" /> Completed
+                        </Badge>
+                      ) : (
+                        <Badge className="bg-[#E7F8F7] text-[#1a9ba1] hover:bg-[#E7F8F7] border-0 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 shrink-0">
+                          <LoaderCircle className="w-3.5 h-3.5 animate-spin-slow" />{" "}
+                          In Progress
+                        </Badge>
+                      )
                     ) : (
-                      <Badge variant="ghost" className="text-xs text-gray-400 bg-gray-50 font-bold px-2 py-0.5 flex items-center gap-1 shrink-0">
+                      <Badge
+                        variant="ghost"
+                        className="text-xs text-gray-400 bg-gray-50 font-bold px-2 py-0.5 flex items-center gap-1 shrink-0"
+                      >
                         <Lock className="w-3 h-3" /> Locked
                       </Badge>
                     )}
@@ -68,14 +82,14 @@ export function SessionsRoadmap() {
                       <div className="mb-6">
                         <div className="flex items-end justify-between mb-2 text-xs">
                           <span className="font-semibold text-gray-800">
-                             {completedTasks} of {totalTasks} tasks completed
+                            {completedTasks} of {totalTasks} tasks completed
                           </span>
                           <span className="font-semibold text-[#1a9ba1] text-xs">
                             {progressPercentage}%
                           </span>
                         </div>
                         <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                          <div 
+                          <div
                             className="h-full bg-[#1a9ba1] rounded-full transition-all duration-1000 ease-out"
                             style={{ width: `${progressPercentage}%` }}
                           />
@@ -83,14 +97,21 @@ export function SessionsRoadmap() {
                       </div>
 
                       <div className="space-y-4 pt-2">
-                        {session.tasks.map((task) => (
-                          <TaskRow 
-                            key={task.id} 
-                            sessionId={session.id}
-                            task={task} 
-                            variant="detailed" 
-                          />
-                        ))}
+                        {session.tasks.map((task, taskIndex) => {
+                          const isPrevTaskUnfinished =
+                            taskIndex > 0 &&
+                            !session.tasks[taskIndex - 1].isCompleted;
+                          const isTaskLocked =
+                            session.isLocked || isPrevTaskUnfinished;
+                          return (
+                            <TaskRow
+                              key={task.id}
+                              sessionId={session.id}
+                              task={task}
+                              isLocked={isTaskLocked}
+                            />
+                          );
+                        })}
                       </div>
                     </>
                   )}

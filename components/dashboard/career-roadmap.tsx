@@ -1,15 +1,17 @@
 "use client";
 
+import { useRoadmapContext } from "@/context/RoadmapContext";
 import { Map, Lock, CheckCircle2, Target } from "lucide-react";
 
-const MILESTONES = [
-  { name: "Build Basics", status: "completed" as const },
-  { name: "Strengthen Concepts", status: "locked" as const },
-  { name: "Score in Boards", status: "locked" as const },
-  { name: "PCM Stream", status: "locked" as const },
-];
-
 export function CareerRoadmap() {
+  const { getProgress, data } = useRoadmapContext();
+  const { progressPercentage, completedTasks, completedSessions } =
+    getProgress();
+
+  const nextSession = data.sessions.find((s) => {
+    return !s.tasks.every((t) => t.isCompleted);
+  });
+
   return (
     <div className="bg-white rounded-lg border p-6">
       <div className="flex items-center justify-between mb-10">
@@ -24,24 +26,33 @@ export function CareerRoadmap() {
 
       <div className="relative mb-8 px-4 overflow-x-auto pb-4 scrollbar-hide">
         <div className="absolute top-[18px] left-0 right-0 h-0.5 bg-gray-100 min-w-[500px]" />
-        <div className="absolute top-[18px] left-0 w-[15%] h-0.5 bg-teal-500 min-w-[500px]" />
+        <div
+          className="absolute top-[18px] left-0 h-0.5 bg-teal-500"
+          style={{ width: `${progressPercentage}%` }}
+        />
 
         <div className="flex justify-between items-start relative z-10 min-w-[500px]">
-          {MILESTONES.map((m) => {
-            const isCompleted = m.status === "completed";
+          {data.sessions.map((s) => {
+            const isCompleted = s.tasks.every((t) => t.isCompleted);
             return (
-              <div key={m.name} className="flex flex-col items-center gap-3 w-32">
+              <div key={s.id} className="flex flex-col items-center gap-3 w-32">
                 {isCompleted ? (
                   <div className="w-9 h-9 rounded-full bg-teal-500 flex items-center justify-center shadow-md shadow-teal-100">
                     <CheckCircle2 className="w-5 h-5 text-white" />
+                  </div>
+                ) : !s.isLocked && !isCompleted ? (
+                  <div className="w-9 h-9 rounded-full bg-orange-400 flex items-center justify-center shadow-md shadow-orange-100">
+                    <Target className="w-4 h-4 text-white" strokeWidth={2.5} />
                   </div>
                 ) : (
                   <div className="w-9 h-9 rounded-full bg-white border-2 border-gray-400 flex items-center justify-center">
                     <Lock className="w-4 h-4 text-gray-400" strokeWidth={2.5} />
                   </div>
                 )}
-                <span className={`text-[11px] font-bold text-center tracking-tight ${isCompleted ? "text-gray-800" : "text-gray-500"}`}>
-                  {m.name}
+                <span
+                  className={`text-[11px] font-bold text-center tracking-tight ${isCompleted ? "text-gray-800" : "text-gray-500"}`}
+                >
+                  {s.title}
                 </span>
               </div>
             );
@@ -53,10 +64,13 @@ export function CareerRoadmap() {
         <div className="flex items-center gap-3">
           <Target className="w-5 h-5 text-teal-500" strokeWidth={2.5} />
           <span className="text-sm font-medium text-teal-500">
-            Next Milestone: Strengthen Concepts
+            Next Milestone:{" "}
+            {nextSession ? nextSession.title : "All Sessions Compelted"}
           </span>
         </div>
-        <span className="text-sm font-bold text-teal-500">65%</span>
+        <span className="text-sm font-bold text-teal-500">
+          {progressPercentage}%
+        </span>
       </div>
     </div>
   );

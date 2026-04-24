@@ -4,15 +4,14 @@ import { useRoadmapContext } from "@/context/RoadmapContext";
 import { Target } from "lucide-react";
 
 export function JourneyProgress() {
+  const { getProgress } = useRoadmapContext();
 
-  const {getProgress} = useRoadmapContext()
-
-  const progress = getProgress()
+  const { progressPercentage, completedTasks, completedSessions } =
+    getProgress();
 
   const r = 50;
   const circumference = 2 * Math.PI * r;
-  const offset = circumference - (progress / 100) * circumference;
-
+  const offset = circumference - (progressPercentage / 100) * circumference;
 
   return (
     <div className="bg-white rounded-lg border overflow-hidden">
@@ -21,7 +20,9 @@ export function JourneyProgress() {
           <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center">
             <Target className="w-4 h-4 text-orange-500" />
           </div>
-          <h2 className="font-bold text-gray-800 tracking-tight">Journey Progress</h2>
+          <h2 className="font-bold text-gray-800 tracking-tight">
+            Journey Progress
+          </h2>
         </div>
 
         <div className="flex justify-center">
@@ -43,12 +44,16 @@ export function JourneyProgress() {
                 stroke="#F97316"
                 strokeWidth="8"
                 strokeDasharray={circumference}
-                strokeDashoffset={offset} 
+                strokeDashoffset={offset}
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
-              <span className="text-2xl font-bold text-orange-500">{progress}%</span>
-              <span className="text-xs font-medium tracking-wider text-gray-400 mt-2">Completed</span>
+              <span className="text-2xl font-bold text-orange-500">
+                {progressPercentage}%
+              </span>
+              <span className="text-xs font-medium tracking-wider text-gray-400 mt-2">
+                Completed
+              </span>
             </div>
           </div>
         </div>
@@ -58,11 +63,11 @@ export function JourneyProgress() {
 
       <div className="grid grid-cols-2 pb-6 pt-4">
         <div className="text-center px-2">
-          <p className="font-bold text-gray-900 mb-0.5">3</p>
+          <p className="font-bold text-gray-900 mb-0.5">{completedTasks}</p>
           <p className="text-xs text-gray-400">Tasks Done</p>
         </div>
         <div className="text-center px-2">
-          <p className="font-bold text-gray-900 mb-0.5">1</p>
+          <p className="font-bold text-gray-900 mb-0.5">{completedSessions}</p>
           <p className="text-xs text-gray-400">Milestones</p>
         </div>
       </div>

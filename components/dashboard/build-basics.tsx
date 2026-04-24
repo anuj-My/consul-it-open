@@ -1,11 +1,10 @@
-'use client'
+"use client";
 import { CheckSquare } from "lucide-react";
 import { TaskRow } from "@/components/sessions/task-row";
 import { useRoadmapContext } from "@/context/RoadmapContext";
 
 export function BuildBasics() {
-
-  const {data}  = useRoadmapContext()
+  const { data } = useRoadmapContext();
 
   const buildBasicsSession = data.sessions[0];
   const tasks = buildBasicsSession.tasks;
@@ -18,14 +17,21 @@ export function BuildBasics() {
       </div>
 
       <div className="space-y-4">
-        {tasks.map((task, i) => (
-          <TaskRow 
-            key={i} 
-            task={task} 
-            sessionId={buildBasicsSession.id}
-            variant="summary" 
-          />
-        ))}
+        {tasks.map((task, taskIndex) => {
+          const isPrevTaskUnfinished =
+            taskIndex > 0 && !tasks[taskIndex - 1].isCompleted;
+          const isTaskLocked =
+            buildBasicsSession.isLocked || isPrevTaskUnfinished;
+
+          return (
+            <TaskRow
+              key={taskIndex}
+              task={task}
+              sessionId={buildBasicsSession.id}
+              isLocked={isTaskLocked}
+            />
+          );
+        })}
       </div>
     </div>
   );
