@@ -6,6 +6,7 @@ import { Task } from "@/types/roadmap";
 
 interface TaskRowProps {
   task: Task;
+  sessionId: string;
   variant?: "summary" | "detailed";
   isLocked?: boolean;
 }

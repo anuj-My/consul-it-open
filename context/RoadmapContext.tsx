@@ -1,3 +1,5 @@
+"use client"
+
 import { initialRoadmapData } from "@/data/data";
 import { RoadmapData, Session, Task } from "@/types/roadmap";
 import { createContext, useContext, useEffect, useState } from "react";

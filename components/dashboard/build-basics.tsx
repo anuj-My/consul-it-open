@@ -1,10 +1,13 @@
+
 import { CheckSquare } from "lucide-react";
 import { TaskRow } from "@/components/sessions/task-row";
-import { initialRoadmapData } from "@/data/data"; // Use the master data
+import { useRoadmapContext } from "@/context/RoadmapContext";
 
 export function BuildBasics() {
-  // Get the first session's tasks (Build Basics)
-  const buildBasicsSession = initialRoadmapData.sessions[0];
+
+  const {data}  = useRoadmapContext()
+
+  const buildBasicsSession = data.sessions[0];
   const tasks = buildBasicsSession.tasks;
 
   return (
@@ -19,6 +22,7 @@ export function BuildBasics() {
           <TaskRow 
             key={i} 
             task={task} 
+            sessionId={buildBasicsSession.id}
             variant="summary" 
           />
         ))}

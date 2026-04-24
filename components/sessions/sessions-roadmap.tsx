@@ -3,10 +3,12 @@
 import { CheckCircle2, LoaderCircle, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TaskRow } from "./task-row";
-import { initialRoadmapData } from "@/data/data";
+import { useRoadmapContext } from "@/context/RoadmapContext";
 
 export function SessionsRoadmap() {
-  const sessions = initialRoadmapData.sessions;
+  const {data} = useRoadmapContext()
+
+  const sessions = data.sessions;
 
   return (
     <div className="relative">
@@ -86,6 +88,7 @@ export function SessionsRoadmap() {
                         {session.tasks.map((task) => (
                           <TaskRow 
                             key={task.id} 
+                            sessionId={session.id}
                             task={task} 
                             variant="detailed" 
                           />
