@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ConsulTOpen AI
 
-## Getting Started
+---
 
-First, run the development server:
+## 🔗 Links
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- GitHub: https://github.com/anuj-My/consul-it-open
+- Live: https://consul-it-open.vercel.app/
+
+---
+
+## What this project does
+
+There are 2 main parts:
+
+### 1. Roadmap system
+
+- The roadmap is divided into sessions
+- Each session has multiple tasks
+- Tasks are **locked in sequence**
+- You can’t move ahead until you complete the previous tasks
+
+---
+
+### 2. AI Chat
+
+- User can type a question or click suggestion chips
+- It shows a mock response
+- I added loading state to make it feel like a real API
+- Also handled errors and disabled input while loading
+
+---
+
+## How I handled state
+
+I used **React Context API** to manage global state.
+
+Main things I store:
+
+- `data` → sessions and tasks
+- `messages` → chat messages
+- `isLoading` → when AI is responding
+
+---
+
+## Data Flow (simple)
+
+### Task Flow
+
+```text id="e8a2t1"
+User clicks complete
+    ↓
+completeTask()
+    ↓
+Update state
+    ↓
+Check if all tasks are done
+    ↓
+Unlock next session
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Chat Flow
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text id="7j3ksl"
+User sends message / clicks suggestion
+    ↓
+sendMessage()
+    ↓
+Add user message
+    ↓
+Call getAiResponse (with delay)
+    ↓
+Add AI message
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ⚙️ Some implementation details
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Used `useState` + Context for global state
+- Used `useEffect` to save roadmap data in localStorage
+- Chat auto-scrolls to latest message
+- Disabled buttons when AI is loading
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Things I know can be improved
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Chat is not persisted yet
+- Could refactor logic into smaller hooks
