@@ -3,7 +3,7 @@
 import { CheckCircle2, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Task } from "@/types/roadmap";
-import { useRoadmapContext } from "@/context/RoadmapContext";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 interface TaskRowProps {
   task: Task;
@@ -17,7 +17,7 @@ export function TaskRow({ task, sessionId, isLocked = false }: TaskRowProps) {
 
   const showContinue = isStarted && !isCompleted && !isLocked;
 
-  const { startTask, completeTask } = useRoadmapContext();
+  const { startTask, completeTask } = useGlobalContext();
 
   return (
     <div

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import RoadmapProvider from "@/context/RoadmapContext";
+import GlobalProvider from "@/context/GlobalContext";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -30,10 +30,8 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <RoadmapProvider>
-          {children}
-        </RoadmapProvider>
-        </body>
+        <GlobalProvider>{children}</GlobalProvider>
+      </body>
     </html>
   );
 }

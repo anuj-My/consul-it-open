@@ -1,10 +1,10 @@
 "use client";
 
-import { useRoadmapContext } from "@/context/RoadmapContext";
+import { useGlobalContext } from "@/context/GlobalContext";
 import { Map, Lock, CheckCircle2, Target } from "lucide-react";
 
 export function CareerRoadmap() {
-  const { getProgress, data } = useRoadmapContext();
+  const { getProgress, data } = useGlobalContext();
   const { progressPercentage, completedTasks, completedSessions } =
     getProgress();
 

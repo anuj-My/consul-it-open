@@ -1,10 +1,10 @@
 "use client";
 
-import { useRoadmapContext } from "@/context/RoadmapContext";
+import { useGlobalContext } from "@/context/GlobalContext";
 import { Target } from "lucide-react";
 
 export function JourneyProgress() {
-  const { getProgress } = useRoadmapContext();
+  const { getProgress } = useGlobalContext();
 
   const { progressPercentage, completedTasks, completedSessions } =
     getProgress();

@@ -58,14 +58,12 @@ export const MOCK_AI_RESPONSES = {
 export function getMockAIResponse(userMessage: string): string {
   const message = userMessage.toLowerCase();
 
-  // Career related queries
   if (message.includes("pcm")) return MOCK_AI_RESPONSES.career.pcm;
   if (message.includes("pcb")) return MOCK_AI_RESPONSES.career.pcb;
   if (message.includes("commerce")) return MOCK_AI_RESPONSES.career.commerce;
   if (message.includes("career") || message.includes("stream"))
     return MOCK_AI_RESPONSES.career.benefits;
 
-  // Study techniques
   if (message.includes("focus") || message.includes("concentrate"))
     return MOCK_AI_RESPONSES.study.focus;
   if (message.includes("balance") || message.includes("competitive"))
@@ -81,7 +79,6 @@ export function getMockAIResponse(userMessage: string): string {
   if (message.includes("study tips") || message.includes("how to study"))
     return MOCK_AI_RESPONSES.study.tips;
 
-  // Subjects
   if (message.includes("mathematics") || message.includes("math"))
     return MOCK_AI_RESPONSES.subjects.mathematics;
   if (message.includes("physics")) return MOCK_AI_RESPONSES.subjects.physics;
@@ -89,14 +86,12 @@ export function getMockAIResponse(userMessage: string): string {
     return MOCK_AI_RESPONSES.subjects.chemistry;
   if (message.includes("biology")) return MOCK_AI_RESPONSES.subjects.biology;
 
-  // Exams
   if (message.includes("board")) return MOCK_AI_RESPONSES.exams.board;
   if (message.includes("neet")) return MOCK_AI_RESPONSES.exams.neet;
   if (message.includes("jee")) return MOCK_AI_RESPONSES.exams.jee;
   if (message.includes("revision") || message.includes("revise"))
     return MOCK_AI_RESPONSES.exams.revision;
 
-  // Wellness
   if (message.includes("sleep") || message.includes("sleep"))
     return MOCK_AI_RESPONSES.wellness.sleep;
   if (
@@ -118,7 +113,6 @@ export function getMockAIResponse(userMessage: string): string {
   return MOCK_AI_RESPONSES.default;
 }
 
-// Export quick prompt suggestions
 export const QUICK_PROMPTS = [
   "What are the benefits of choosing PCM?",
   "How do I balance board exams and competitive exams?",

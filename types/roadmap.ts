@@ -18,3 +18,10 @@ export interface Session {
 export interface RoadmapData {
   sessions: Session[];
 }
+
+export type Message = {
+  id: string;
+  content: string;
+  sender: "user" | "ai";
+  timeStamp: Date;
+};

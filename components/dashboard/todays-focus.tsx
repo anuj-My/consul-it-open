@@ -71,6 +71,7 @@ export function TodaysFocus() {
             alt="Calm"
             fill
             className="object-contain"
+            sizes="48px"
           />
         </div>
 

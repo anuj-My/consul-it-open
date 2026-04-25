@@ -3,10 +3,10 @@
 import { CheckCircle2, LoaderCircle, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TaskRow } from "./task-row";
-import { useRoadmapContext } from "@/context/RoadmapContext";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 export function SessionsRoadmap() {
-  const { data } = useRoadmapContext();
+  const { data } = useGlobalContext();
 
   const sessions = data.sessions;
 

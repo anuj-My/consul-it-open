@@ -1,10 +1,10 @@
 "use client";
 import { CheckSquare } from "lucide-react";
 import { TaskRow } from "@/components/sessions/task-row";
-import { useRoadmapContext } from "@/context/RoadmapContext";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 export function BuildBasics() {
-  const { data } = useRoadmapContext();
+  const { data } = useGlobalContext();
 
   const buildBasicsSession = data.sessions[0];
   const tasks = buildBasicsSession.tasks;

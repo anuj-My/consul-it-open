@@ -1,10 +1,11 @@
 "use client";
 
 import { initialRoadmapData } from "@/data/data";
-import { RoadmapData, Session, Task } from "@/types/roadmap";
+import { getMockAIResponse } from "@/data/mock-ai-responses";
+import { Message, RoadmapData, Session, Task } from "@/types/roadmap";
 import { createContext, useContext, useEffect, useState } from "react";
 
-interface RoadmapContextType {
+interface GlobalContextType {
   data: RoadmapData;
   startTask: (sessionId: string, taskId: string) => void;
   completeTask: (sessionId: string, taskId: string) => void;
@@ -13,12 +14,17 @@ interface RoadmapContextType {
     completedTasks: number;
     completedSessions: number;
   };
+  messages: Message[];
+  sendMessage: (content: string) => void;
+  isLoading: boolean;
 }
 
-const RoadmapContext = createContext<RoadmapContextType | undefined>(undefined);
+const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
-const RoadmapProvider = ({ children }: { children: React.ReactNode }) => {
+const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [data, setData] = useState<RoadmapData>(initialRoadmapData);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("roadmapData");
@@ -116,22 +122,75 @@ const RoadmapProvider = ({ children }: { children: React.ReactNode }) => {
     return { progressPercentage, completedTasks, completedSessions };
   };
 
+  const getAiResponse = (userMessage: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (userMessage.trim()) {
+          resolve(getMockAIResponse(userMessage));
+        } else {
+          reject(new Error("Invalid User Input."));
+        }
+      }, 1500);
+    });
+  };
+
+  const sendMessage = async (content: string) => {
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      sender: "user",
+      content,
+      timeStamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+
+    try {
+      setIsLoading(true);
+      const aiResponse = await getAiResponse(content);
+      const aiMessage: Message = {
+        id: Date.now().toString(),
+        sender: "ai",
+        content: aiResponse,
+        timeStamp: new Date(),
+      };
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (error) {
+      const aiMessage: Message = {
+        id: Date.now().toString(),
+        sender: "ai",
+        content: "Something went wrong.",
+        timeStamp: new Date(),
+      };
+      setMessages((prev) => [...prev, aiMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <RoadmapContext.Provider
-      value={{ data, startTask, completeTask, getProgress }}
+    <GlobalContext.Provider
+      value={{
+        data,
+        startTask,
+        completeTask,
+        getProgress,
+        sendMessage,
+        messages,
+        isLoading,
+      }}
     >
       {children}
-    </RoadmapContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 
-export default RoadmapProvider;
+export default GlobalProvider;
 
-export const useRoadmapContext = () => {
-  const context = useContext(RoadmapContext);
+export const useGlobalContext = () => {
+  const context = useContext(GlobalContext);
 
   if (!context) {
-    throw new Error("useRoadmapContext must be used within RoadmapProvider");
+    throw new Error("useGlobalContext must be used within GlobalProvider");
   }
 
   return context;
